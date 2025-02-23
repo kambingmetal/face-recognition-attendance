@@ -59,23 +59,6 @@ def capture_face():
             writer.writerow(["gambar", "nama"])  # Tulis header jika file belum ada
         writer.writerow([file_name, user_name])
 
-    # Simpan ke Excel (absensi)
-    tanggal = datetime.now().strftime("%Y-%m-%d")
-    waktu = datetime.now().strftime("%H:%M:%S")
-
-    if os.path.exists(excel_file):
-        df = pd.read_excel(excel_file)
-    else:
-        df = pd.DataFrame(columns=["Nama", "Tanggal", "Waktu"])
-
-    # Tambahkan data baru
-    new_data = pd.DataFrame([[user_name, tanggal, waktu]], columns=["Nama", "Tanggal", "Waktu"])
-    df = pd.concat([df, new_data], ignore_index=True)
-
-    # Simpan kembali ke Excel
-    df.to_excel(excel_file, index=False)
-    messagebox.showinfo("Sukses", "Data berhasil dicatat di absensi.xlsx")
-
 # Buat UI dengan Tkinter
 root = tk.Tk()
 root.title("Face Registration")

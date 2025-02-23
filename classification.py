@@ -55,12 +55,6 @@ def save_to_excel(name):
     date_str = now.strftime("%Y-%m-%d")
     time_str = now.strftime("%H:%M:%S")
 
-    # Cek apakah pengguna sudah absen hari ini
-    for row in sheet.iter_rows(values_only=True):
-        if row[0] == name and row[1] == date_str:
-            messagebox.showwarning("Peringatan", f"{name} sudah absen hari ini!")
-            return
-
     # Tambahkan data baru
     sheet.append([name, date_str, time_str])
     workbook.save(excel_file)
